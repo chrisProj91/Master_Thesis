@@ -22,20 +22,20 @@ boundary_low = [0, 0]
 boundary_high = [0, 0]
 # FDTD parameter and incident wave parameter
 
-eps0 = 8.854 * 10^-12
-m0 = 4 * pi * 10^-7
-c =1/sqrt(eps0*m0)
-ddx =10^-4
+eps0 = 8.854 * pow(10,-12)
+m0 = 4 * pi * pow(10, -7)
+c = 1/sqrt(eps0*m0)
+ddx = pow(10, -4) #10^-4
 dt = ddx/(2*c)
-tc=300
-t_0=90
+tc = 300
+t_0 = 90
 
 #ddx = 0.01 # Cell size
 #dt = ddx / 6e8 # Time step size
 
 # Parameter medium Lorentz 
 eps_inf = 1.0  
-Deps_p  =0.5  #  eps-eps_inf
+Deps_p  = 0.5  #  eps-eps_inf
 sigma = np.zeros(Nx)
 omega_0 = np.zeros(Nx)
 a1 = np.zeros(Nx)
@@ -55,13 +55,13 @@ for k in range(1, Nx):
     
 for k in range(100, 150):
     sigma[k] = 1.5
-    omega_p[k] = 40*pi*10^9
+    omega_p[k] = 40*pi*pow(10,9)  ## 10^9
     delta_p[k] = (0.01*omega_p[k])
     
     f[k]=1
-    a1[k]    = (2-(omega_p[k] * dt) ^2)/(1+dt*delta_p[k])
+    a1[k]    = (2- pow((omega_p[k] * dt), 2)/(1+dt*delta_p[k])
     a2[k]    = (dt*delta_p[k]-1)/(1+dt*delta_p[k])
-    a3[k]    = Deps_p*eps0*f[k]*(omega_p[k]*dt)^2/(delta_p[k]*dt+1)
+    a3[k]    = Deps_p*eps0*f[k]* pow((omega_p[k]*dt),2) /(delta_p[k]*dt+1)
     c1[k]    = (a3[k]/2)/(2*eps_inf*eps0+sigma[k]*dt+(a3[k]/2))         
     c2[k]    = (2*eps_inf*eps0-sigma[k]*dt)/(2*eps_inf*eps0+sigma[k]*dt+(a3[k]/2))      
     c3[k]    = 2*dt/(2*eps_inf*eps0+sigma[k]*dt+(a3[k]/2))
@@ -71,7 +71,7 @@ for k in range(100, 150):
 for time in range(1, nsteps+1):
 
  
-    source = exp(-0.5*((tc-time)/t_0)^2)   #time*dt*3*10^12
+    source = exp(-0.5*( pow((tc-time)/t_0), 2) )   #time*dt*3*10^12
     ex[2] = ex[2]+source
 
     for k in range(1, Nx):
