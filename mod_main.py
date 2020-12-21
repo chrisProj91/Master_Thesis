@@ -13,6 +13,8 @@ import math
 # from matplotlib import pyplot as plt
 # from math import pi, exp, cos, sin, sqrt, atan2
 
+from matplotlib import pyplot as plt
+
 # INFO: Create the OOP style program template and vag will 
 #       expand it later on ...
 
@@ -54,6 +56,7 @@ class Diplo:
         self.demostration_of_lists()
         self.fill_c3()
         self.print_c3()
+        self.plot_a_list(self.c3)
 
     def demostration_of_lists(self):
         """
@@ -78,14 +81,24 @@ class Diplo:
             @vag what is c3, so we can calculate it ? Is it a matrix or is a sum ?
             I guess it is a matrix ... ?
         """
+        for_testing_plot = 0
         for k in range(self.Nx):
-            self.c3.append( float(self.dt/self.eps0) )
+            self.c3.append( float(self.dt/self.eps0) + for_testing_plot)
+            for_testing_plot += 1.333
 
     def print_c3(self):
         """
             Just to check values of c3 matrix
         """
         print(self.c3)
+
+    def plot_a_list(self, a_list):
+        """
+            Trivial function which when called plots a list/matrix
+            one-dimensional via Python's matplotlib built-in library
+        """
+        plt.plot(a_list)
+        plt.show()
 
     def step_une(self):
         """
