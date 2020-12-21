@@ -36,10 +36,14 @@ class Diplo:
     # Initialize all lists/matrices with Nx*zeros or Nx*ones respectively
     #
     ex = jx = Jxm1 = hy = eym1 = eym2 = omega_p = sigma = omega_zero = delta_p = f = p = [[0] * Nx]
-    a1 = a2 = a3 = [[0] * Nx]
-    c1 = [[0] * Nx]
-    c2 = [[1] * Nx]
-    c3 = list()
+    # DEL START
+    # a1, a2, a3, c1, c2, c3 are values calculated by equations
+    # a1 = a2 = a3 = [[0] * Nx]
+    # c1 = [[0] * Nx]
+    # c2 = [[1] * Nx]
+    # c3 = list()
+    # DEL END
+
     # Cell size
     ddx = 0.01
     # Time step size | dt = dx/(6*10^8)
@@ -54,21 +58,20 @@ class Diplo:
             Contructor for the Diplo class
         """
         self.demostration_of_lists()
-        self.fill_c3()
-        self.print_c3()
-        self.plot_a_list(self.c3)
+        self.jx = list()
+        self.fill_jx()
+        self.print_jx()
+        self.plot_a_list(self.jx)
 
     def demostration_of_lists(self):
         """
             A simple (void) bundle function that demonstrates how matrices work in Python
             so you can see and use later in your program ...
         """
-        all_matrices = [self.ex, self.a1, self.jx, self.Jxm1, self.hy, self.eym1, self.eym2, self.omega_p, \
-                        self.sigma, self.omega_zero, self.delta_p, self.f, self.p, self.a2, self.a3, \
-                        self.c1, self.c2, self.c3]
-        all_matrices_names = ["ex", "a1", "jx", "Jxm1", "hy", "eym1", "eym2", "omega_p", \
-                               "sigma", "omega_zero", "delta_p", "f", "p", "a2", "a3", \
-                               "c1", "c2", "c3"]
+        all_matrices = [self.ex, self.jx, self.Jxm1, self.hy, self.eym1, self.eym2, self.omega_p, \
+                        self.sigma, self.omega_zero, self.delta_p, self.f, self.p]
+        all_matrices_names = ["ex", "jx", "Jxm1", "hy", "eym1", "eym2", "omega_p", \
+                               "sigma", "omega_zero", "delta_p", "f", "p"]
         index = 0
         for item in all_matrices:
             print("Now printing matrix : %s " %all_matrices_names[index])
@@ -76,21 +79,21 @@ class Diplo:
             for sub_item in item:
                 print("%s\n" %sub_item)
 
-    def fill_c3(self):
+    def fill_jx(self):
         """
             @vag what is c3, so we can calculate it ? Is it a matrix or is a sum ?
             I guess it is a matrix ... ?
         """
         for_testing_plot = 0
         for k in range(self.Nx):
-            self.c3.append( float(self.dt/self.eps0) + for_testing_plot)
+            self.jx.append( float(self.dt/self.eps0) + for_testing_plot)
             for_testing_plot += 1.333
 
-    def print_c3(self):
+    def print_jx(self):
         """
             Just to check values of c3 matrix
         """
-        print(self.c3)
+        print(self.jx)
 
     def plot_a_list(self, a_list, color="magenta", marker="o", linestyle="dashed", linewidth=2, markersize=12):
         """
