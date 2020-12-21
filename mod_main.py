@@ -92,12 +92,13 @@ class Diplo:
         """
         print(self.c3)
 
-    def plot_a_list(self, a_list):
+    def plot_a_list(self, a_list, color="magenta", marker="o", linestyle="dashed", linewidth=2, markersize=12):
         """
             Trivial function which when called plots a list/matrix
             one-dimensional via Python's matplotlib built-in library
         """
-        plt.plot(a_list)
+        # plt.plot(a_list)
+        plt.plot(a_list, color=color, marker=marker, linestyle=linestyle, linewidth=linewidth, markersize=markersize)
         plt.show()
 
     def step_une(self):
