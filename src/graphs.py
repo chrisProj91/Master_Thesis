@@ -69,7 +69,9 @@ class PieChart:
         """
         plt.figure(figsize =(10, 7))
         explode = (0, 0.1, 0, 0, 0)
-        plt.pie(self.metrics, explode=explode, labels=self.teams, colors=self.colors)
+        plt.pie(self.metrics, explode=explode, labels=self.teams, colors=self.colors) # , startangle=90)
+        plt.title("Greek Football Teams Sample Chart")
+        plt.legend(self.teams, loc="best")
         plt.show()
     
 
