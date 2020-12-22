@@ -27,7 +27,7 @@ def init_matrix(my_matrix):
 
 def step1():
     for i in range(100, 151):
-        a1[i]= (2- pow((omega_p[i] * dt), 2)/(1+dt*delta_p[i])
+        a1[i]= (2- pow((omega_p[i] * dt), 2)/(1+dt*delta_p[i]))
 
 
 def main():
