@@ -6,6 +6,9 @@
 import sys
 from matplotlib import pyplot as plt
 
+import numpy as np
+# import pandas as pd
+
 
 class PieChart:
     """
@@ -73,6 +76,40 @@ class PieChart:
         plt.title("Greek Football Teams Sample Chart")
         plt.legend(self.teams, loc="best")
         plt.show()
+
+    def list_to_tuple(self, input_list):
+        """
+            Input: a list
+            Output: a tuple
+        """
+        return tuple(input_list)
+
+    def bar_chart(self, align_option="default"):
+        """
+            Create a bar chart using Python's libraries (Numpy)
+        """
+        teams = self.list_to_tuple(self.teams)
+        y_pos = np.arange(len(teams))
+        metrics = self.metrics
+
+        if align_option=="default":
+            plt.bar(y_pos, metrics, align='center', alpha=0.5)
+            plt.xticks(y_pos, teams)
+            plt.ylabel('Percentage (%) --->')
+            plt.xlabel('Teams ---> ')
+
+        elif align_option=="reverse":
+            plt.barh(y_pos, metrics, align='center', alpha=0.5)
+            plt.yticks(y_pos, teams)
+            plt.xlabel('Percentage (%) --->')
+            plt.ylabel('Teams --->')
+
+        else:
+            print("Please choose valid option: [default | reverse] and try again!")
+            sys.exit(1)
+        
+        plt.title('Greek Football Teams')
+        plt.show()
     
 
 def main():
@@ -91,7 +128,9 @@ def main():
     #
     my_chart = PieChart(my_teams, my_metrics, my_colors)
     my_chart.show_info()
-    my_chart.plot_chart()
+    # my_chart.plot_chart()
+
+    my_chart.bar_chart("reverse")
 
 if __name__ == "__main__":
     main()
