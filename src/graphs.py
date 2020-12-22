@@ -41,26 +41,26 @@ class PieChart:
         """
             Informational trivial function
         """
-        print("Printing-out the teams user has chosen ..")
-        counter = 0
+        print("\nPrinting-out the teams user has chosen ..")
+        counter = 1
         for team in self.teams:
             print("Team %d : %s " %(counter, team))
             counter += 1
         #
         # Colors
         #
-        print("Printing-out the colors user has chosen ..")
-        counter = 0
+        print("\nPrinting-out the colors user has chosen ..")
+        counter = 1
         for color in self.colors:
              print("Color %d : %s " %(counter, color))
              counter += 1
         #
-        # Matrics for the respective teams
+        # Metrics for the respective teams
         #
-        print("Printing-out metrics of each flavor")
+        print("\nPrinting-out metrics of each flavor ..")
         counter = 0
         for metric in self.metrics:
-            print("Team: %s | People: %d" %(self.teams[counter], metric))
+            print("Team: %s | People: %d %%" %(self.teams[counter], metric))
             counter += 1
 
     def plot_chart(self):
