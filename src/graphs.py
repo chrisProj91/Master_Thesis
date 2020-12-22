@@ -3,6 +3,8 @@
 # Date: December 22, 2020 | Covid Year 
 # Simple example on how to plot a Pie Chart using matplotlib
 #
+# Update #1: Add bar chart example default & reverse orientation
+#
 import sys
 from matplotlib import pyplot as plt
 
@@ -10,7 +12,7 @@ import numpy as np
 # import pandas as pd
 
 
-class PieChart:
+class Charts:
     """
         A class to plot a Pie Chart via matplotlib
         for a few Football teams & a metrics unit, like for
@@ -66,7 +68,7 @@ class PieChart:
             print("Team: %s | People: %d %%" %(self.teams[counter], metric))
             counter += 1
 
-    def plot_chart(self):
+    def plot_pie_chart(self):
         """
             Plot the Pie Chart
         """
@@ -126,10 +128,10 @@ def main():
     #
     # Create the object and call the function to plot the Pie Chart
     #
-    my_chart = PieChart(my_teams, my_metrics, my_colors)
+    my_chart = Charts(my_teams, my_metrics, my_colors)
     my_chart.show_info()
-    # my_chart.plot_chart()
-
+    my_chart.plot_pie_chart()
+    my_chart.bar_chart()
     my_chart.bar_chart("reverse")
 
 if __name__ == "__main__":
