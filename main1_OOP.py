@@ -51,6 +51,8 @@ class Gain_media:
     c1 = np.zeros(Nx)
     c2 = np.ones(Nx)
     c3 = np.zeros(Nx)
+    # make envelope also global to call it from plot() def
+    envelope = 0
     
     def __init__(self, nsteps): 
         """
@@ -134,8 +136,8 @@ class Gain_media:
         """
         Calculate the envelope of ex and maximum value 
         """
-        envelope=np.abs(hilbert(self.ex))  
-        maximum = max(envelope)
+        self.envelope=np.abs(hilbert(self.ex))  
+        maximum = max(self.envelope)
         print(maximum) 
         
     def plot(self):
