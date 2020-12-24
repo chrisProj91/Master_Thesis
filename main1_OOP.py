@@ -165,13 +165,17 @@ def main():
     """
         main def()
     """
-    time_steps = 3800
-    visual = Gain_media(time_steps)  
-    visual.clc_c3()
-    visual.media()
-    visual.Main_loop()
-    visual.envel()
-    visual.plot()
+    time_steps = [10, 20, 30]
+    i = 1
+    for step in time_steps:
+        print("##################################")
+        print("Creating object %d : " % i)
+        visual_obj = Gain_media(step)
+        visual_obj.run_procedure()
+        i += 1
+        print("##################################")
+    # visual = Gain_media(time_steps)  
+    # visual.run_procedure()
 
 if __name__ == "__main__":
     main()    
