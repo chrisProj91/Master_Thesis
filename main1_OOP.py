@@ -10,6 +10,8 @@ from matplotlib import pyplot as plt
 from math import pi, exp, cos, sin, sqrt, atan2
 from scipy.signal import hilbert, chirp
 
+import pandas as pd
+
 class Gain_media:
     """
         Class for computing electric field
@@ -186,9 +188,18 @@ class Ploter:
         """
             plot
         """
-        plt.plot(self.y, self.x)
+        df = pd.DataFrame({
+            'maximum values=f(steps)': self.y
+            }, index=self.x)
+        lines = df.plot.line()     #(x='maximum values', y='steps')
+        lines.plot()
         plt.show()
 
+# def list_to_numpy(my_list):
+#     """
+#         Convert a list to a numpy list
+#     """
+#     return np.asarray(my_list)
         
 def main():
     """
@@ -211,20 +222,8 @@ def main():
     # print(maximum_values)
 
     print("Ploting ...")
-    plt.plot(maximum_values, time_steps)
-    plt.show()
-
-    # visual = Gain_media(time_steps)  
-    # visual.run_procedure()
+    ploter = Ploter(maximum_values, time_steps)
+    ploter.plot()
 
 if __name__ == "__main__":
     main()    
-        
-        
-
-        
-        
-        
-        
-            
-        
