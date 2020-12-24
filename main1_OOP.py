@@ -170,6 +170,7 @@ def main():
     for step in time_steps:
         print("##################################")
         print("Creating object %d : " % i)
+        print("Calculating value for Steps: %d" % step)
         visual_obj = Gain_media(step)
         visual_obj.run_procedure()
         i += 1
