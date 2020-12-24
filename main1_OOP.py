@@ -41,6 +41,10 @@ class Gain_media:
     Deps_p  =0.5
     sigma = np.zeros(Nx)
     omega_0 = np.zeros(Nx)
+    omega_p = np.zeros(Nx)
+    delta_p = np.zeros(Nx)
+    f = np.zeros(Nx)
+    p = np.zeros(Nx)
     a1 = np.zeros(Nx)
     a2 = np.zeros(Nx)
     a3 = np.zeros(Nx)
@@ -63,7 +67,7 @@ class Gain_media:
         """
             Calculate parameter c3 in full space
         """    
-        for k in range(1, self.Nx + 1):
+        for k in range(1, self.Nx):
             self.c3[k] = self.dt / (self.eps0)
             
     def media(self):
