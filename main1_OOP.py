@@ -205,7 +205,7 @@ def main():
     """
         main def()
     """
-    time_steps = [10, 20, 30, 40, 50]
+    time_steps = [i for i in range(0,100,10)]  #[10, 20, 30, 40, 50]
     maximum_values = []
     i = 1
     for step in time_steps:
