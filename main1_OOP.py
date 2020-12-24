@@ -46,18 +46,18 @@ class Gain_media:
     a3 = np.zeros(Nx)
     c1 = np.zeros(Nx)
     c2 = np.ones(Nx)
-    #c3 = np.zeros(Nx)
+    c3 = np.zeros(Nx)
     
-    def init(self, nsteps): 
+    def __init__(self, nsteps): 
         """
             Constructor
         """
-        self.nsteps= nsteps
-        self.clc_c3()
-        self.media()
-        self.Main_loop()
-        self.envel()
-        self.plot()
+        self.nsteps = nsteps
+        # self.clc_c3()
+        # self.media()
+        # self.Main_loop()
+        # self.envel()
+        # self.plot()
         
     def clc_c3(self):
         """
@@ -71,17 +71,17 @@ class Gain_media:
         Create the media
         """
         for k in range(3200, 3500):
-            self.sigma[k] = -5#-16.2#-6.2#-0.62
-            self.omega_p[k] = 5#40*pi*pow(10, 9)
-            self.delta_p[k] = 0.01 / 2#(0.01*omega_p[k])
+            self.sigma[k] = -5      #-16.2#-6.2#-0.62
+            self.omega_p[k] = 5     #40*pi*pow(10, 9)
+            self.delta_p[k] = (0.01 / 2)  #(0.01*omega_p[k])
     
-            self.f[k]=-1
-            self.a1[k]    = (2-pow((self.omega_p[k] * self.dt), 2))/(1+self.dt * self.delta_p[k])
-            self.a2[k]    = (self.dt*self.delta_p[k]-1)/(1+self.dt*self.delta_p[k])
-            self.a3[k]    = self.Deps_p * self.eps0 * self.f[k] * pow((self.omega_p[k] * self.dt), 2)/(self.delta_p[k] * self.dt+1)
-            self.c1[k]    = (self.a3[k]/2)/(2 * self.eps_inf * self.eps0 + self.sigma[k] * self.dt + (self.a3[k]/2))         
-            self.c2[k]    = (2*self.eps_inf * self.eps0 - self.sigma[k] * self.dt)/(2 * self.eps_inf * self.eps0 + self.sigma[k] * self.dt + (self.a3[k]/2))      
-            self.c3[k]    = 2 * self.dt/(2 * self.eps_inf * self.eps0 + self.sigma[k] * self.dt + (self.a3[k]/2))
+            self.f[k] = -1
+            self.a1[k] = (2-pow((self.omega_p[k] * self.dt), 2))/(1+self.dt * self.delta_p[k])
+            self.a2[k] = (self.dt*self.delta_p[k]-1)/(1+self.dt*self.delta_p[k])
+            self.a3[k] = self.Deps_p * self.eps0 * self.f[k] * pow((self.omega_p[k] * self.dt), 2)/(self.delta_p[k] * self.dt+1)
+            self.c1[k] = (self.a3[k]/2)/(2 * self.eps_inf * self.eps0 + self.sigma[k] * self.dt + (self.a3[k]/2))         
+            self.c2[k] = (2*self.eps_inf * self.eps0 - self.sigma[k] * self.dt)/(2 * self.eps_inf * self.eps0 + self.sigma[k] * self.dt + (self.a3[k]/2))      
+            self.c3[k] = (2*self.dt)/(2 * self.eps_inf * self.eps0 + self.sigma[k] * self.dt + (self.a3[k]/2))
     
     def Main_loop(self):
         """
@@ -154,8 +154,11 @@ def main():
     """
     time_steps = 1000
     visual = Gain_media(time_steps)  
+    visual.clc_c3()
+    visual.media()
+    visual.Main_loop()
     visual.envel()
-    visual.plot()      
+    visual.plot()
 
 if __name__ == "__main__":
     main()    
