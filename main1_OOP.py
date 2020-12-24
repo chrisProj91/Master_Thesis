@@ -59,11 +59,6 @@ class Gain_media:
             Constructor
         """
         self.nsteps = nsteps
-        # self.clc_c3()
-        # self.media()
-        # self.Main_loop()
-        # self.envel()
-        # self.plot()
         
     def clc_c3(self):
         """
@@ -153,18 +148,26 @@ class Gain_media:
         plt.ylim(0, 3)
         plt.axvline(3200, color='b')
         plt.axvline(3500, color='b')
+
+    def run_procedure(self):
+        """
+            A bundle to run all needed functions at once,
+            in order not to call them one by one from main 
+            function
+        """
+        self.clc_c3()
+        self.media()
+        self.Main_loop()
+        self.envel()
+        self.plot()
         
 def main():
     """
         main def()
     """
     time_steps = 1000
-    visual = Gain_media(time_steps)  
-    visual.clc_c3()
-    visual.media()
-    visual.Main_loop()
-    visual.envel()
-    visual.plot()
+    visual = Gain_media(time_steps)
+    visual.run_procedure()
 
 if __name__ == "__main__":
     main()    
