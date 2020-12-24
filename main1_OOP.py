@@ -138,7 +138,7 @@ class Gain_media:
         """
         self.envelope=np.abs(hilbert(self.ex))  
         maximum = max(self.envelope)
-        print(maximum) 
+        print(maximum) #("Maximum value is : %d" %maximum) 
         
     def plot(self):
         """
@@ -158,7 +158,7 @@ def main():
     """
         main def()
     """
-    time_steps = 1000
+    time_steps = 3800
     visual = Gain_media(time_steps)  
     visual.clc_c3()
     visual.media()
