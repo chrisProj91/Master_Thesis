@@ -133,7 +133,14 @@ class Gain_media:
         """
         self.envelope=np.abs(hilbert(self.ex))  
         maximum = max(self.envelope)
-        print("Maximum value is : %.5f" % maximum) 
+        print("Maximum value is : %.5f" % maximum)
+
+    def getMaximum(self):
+        """
+            return max(envelope), 
+            needed to plot later from main def()
+        """
+        return max(self.envelope)
         
     def plot(self):
         """
@@ -160,12 +167,35 @@ class Gain_media:
         self.Main_loop()
         self.envel()
         self.plot()
+
+class Ploter:
+    """
+        A second class to plot based on steps and the value returned by
+        the first Gain_media class
+    """
+    def __init__(self, values, steps):
+        """
+            Plotter class constructor
+            @steps  : the used steps from main function
+            @values : the values (maximum) returned when Gain_media class is called
+        """
+        self.x = values
+        self.y = steps
+
+    def plot(self):
+        """
+            plot
+        """
+        plt.plot(self.y, self.x)
+        plt.show()
+
         
 def main():
     """
         main def()
     """
-    time_steps = [10, 20, 30]
+    time_steps = [10, 20, 30, 40, 50]
+    maximum_values = []
     i = 1
     for step in time_steps:
         print("##################################")
@@ -173,8 +203,17 @@ def main():
         print("Calculating value for Steps: %d" % step)
         visual_obj = Gain_media(step)
         visual_obj.run_procedure()
+        # save max values in the list 
+        maximum_values.append(visual_obj.getMaximum())
         i += 1
-        print("##################################")
+        print("##################################\n")
+
+    # print(maximum_values)
+
+    print("Ploting ...")
+    plt.plot(maximum_values, time_steps)
+    plt.show()
+
     # visual = Gain_media(time_steps)  
     # visual.run_procedure()
 
